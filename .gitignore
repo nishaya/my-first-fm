@@ -60,3 +60,6 @@ typings/
 # Parcel
 .cache
 dist/
+
+# Mac
+.DS_Store
