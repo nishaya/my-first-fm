@@ -11,6 +11,7 @@ const synth = new Synth()
 const keys = [
   'a', 'w', 's', 'e', 'd', 'f',
   't', 'g', 'y', 'h', 'u', 'j',
+  'k', 'o', 'l', 'p',
 ]
 
 keys.forEach((key, i) => {
