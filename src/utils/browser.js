@@ -10,8 +10,8 @@ export const activateKeyEvent = () => {
   })
 }
 
-export const addKeyEvent = (key, handler) => {
+export const addKeyDownEvent = (key, handler) => {
   keyDownHandlers[key] = handler
 }
 
-export default { addKeyEvent }
+export default { addKeyDownEvent }

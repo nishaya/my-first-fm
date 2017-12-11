@@ -8,14 +8,14 @@ const AudioContext = window.AudioContext || window.webkitAudioContext
 const NUM_OPERATORS = 4
 const initPreset = presets[1]
 
-export default class Synth {
-  algo: Algorithm
-  ops: Array<Operator>
+class Note {
   ctx: AudioContext
+  ops: Array<Operator>
+  algo: Algorithm
 
-  constructor() {
-    this.algo = initPreset.algo
-    this.ctx = new AudioContext()
+  constructor(ctx: AudioContext, algorithm: Algorithm) {
+    this.ctx = ctx
+    this.algo = algorithm
     this.ops = new Array(NUM_OPERATORS).fill(null).map((_, i) => {
       const preset = this.algo[i]
       console.log(`init op ${i}`, preset)
@@ -43,5 +43,21 @@ export default class Synth {
       console.log(`op ${i} play.`)
       op.play(duration, freq)
     })
+  }
+}
+
+export default class Synth {
+  algo: Algorithm
+  ctx: AudioContext
+
+  constructor() {
+    this.algo = initPreset.algo
+    this.ctx = new AudioContext()
+  }
+
+  play(noteNumber: number, duration: number = 1.0) {
+    const note = new Note(this.ctx, this.algo)
+    const freq = 440 * (2 ** ((noteNumber - 21) / 12))
+    note.play(duration, freq)
   }
 }
