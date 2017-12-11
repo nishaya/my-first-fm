@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Box from './box'
+import Box from './components/box'
 
 render(
   <Box message="Hello React component!!" />,

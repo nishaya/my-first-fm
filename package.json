@@ -6,7 +6,7 @@
   "author": "nishaya <nishaya@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel src/index.html"
   },
   "dependencies": {
     "@shopify/polaris": "^1.8.3",
