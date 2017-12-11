@@ -44,6 +44,13 @@ class Note {
       op.play(duration, freq)
     })
   }
+
+  stop() {
+    this.ops.forEach((op, i) => {
+      console.log(`op ${i} stop.`)
+      op.stop()
+    })
+  }
 }
 
 export default class Synth {
@@ -73,6 +80,7 @@ export default class Synth {
     const note = this.playingNotes.get(noteNumber)
     if (note) {
       console.log('stop note')
+      note.stop()
       this.playingNotes.delete(noteNumber)
     }
   }

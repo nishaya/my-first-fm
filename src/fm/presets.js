@@ -43,7 +43,7 @@ const presets = [
             attack: 0.001,
             decay: 1,
             sustain: 1,
-            release: 0.3,
+            release: 0.5,
           },
         },
       },
@@ -52,10 +52,10 @@ const presets = [
         type: 'modulator',
         params: {
           freqRatio: 14,
-          level: 0.4,
+          level: 1.6,
           adsr: {
             attack: 0.001,
-            decay: 0.2,
+            decay: 0.1,
             sustain: 0,
             release: 0.001,
           },

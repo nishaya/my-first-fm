@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Synth from 'fm/synth'
-import { activateKeyEvent, addKeyDownEvent } from 'utils/browser'
+import { activateKeyEvent, addKeyDownEvent, addKeyUpEvent } from 'utils/browser'
 import OperatorComponent from './operator'
 
 activateKeyEvent()
@@ -17,6 +17,10 @@ const keys = [
 keys.forEach((key, i) => {
   addKeyDownEvent(key, () => {
     synth.play(i + 12, 0.5)
+  })
+
+  addKeyUpEvent(key, () => {
+    synth.stop(i + 12)
   })
 })
 

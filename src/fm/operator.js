@@ -41,7 +41,7 @@ export default class Operator {
     this.osc.frequency.value = playFreq
 
     const current = this.ctx.currentTime
-    const { release } = this.adsr
+    // const { release } = this.adsr
     const level = this.level * this.gainMult
 
     // apply ADSR to gain
@@ -51,10 +51,17 @@ export default class Operator {
       level * this.adsr.sustain,
       current + this.adsr.attack + this.adsr.decay,
     )
-    this.gain.gain.linearRampToValueAtTime(0, current + duration + release)
-
+    // this.gain.gain.linearRampToValueAtTime(0, current + duration + release)
     this.osc.start(current)
-    this.osc.stop(current + duration + release)
+  }
+
+  stop() {
+    const { release } = this.adsr
+    const current = this.ctx.currentTime
+    const duration = current + release + 0.002
+    this.gain.gain.cancelScheduledValues(current)
+    this.gain.gain.linearRampToValueAtTime(0, duration)
+    this.osc.stop(duration + 0.002)
   }
 
   // operator's destination
