@@ -4,6 +4,7 @@ env:
   browser: 1
 rules:
   semi: 0
+  no-mixed-operators: 0
   react/prefer-stateless-function: 0
   import/extensions: 0
   import/no-extraneous-dependencies: 0

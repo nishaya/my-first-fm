@@ -15,7 +15,7 @@ const keys = [
 keys.forEach((key, i) => {
   addKeyEvent(key, () => {
     console.log('play')
-    synth.play(0.5, 440 * (2 ** ((i + 12 - 21)/12)))
+    synth.play(0.5, 440 * (2 ** ((i + 12 - 21) / 12)))
   })
 })
 

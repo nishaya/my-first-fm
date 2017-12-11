@@ -41,7 +41,7 @@ export default class Operator {
     this.osc.frequency.value = playFreq
 
     const current = this.ctx.currentTime
-    const release = this.adsr.release
+    const { release } = this.adsr
     const level = this.level * this.gainMult
 
     // apply ADSR to gain

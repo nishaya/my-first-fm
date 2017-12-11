@@ -24,9 +24,10 @@ export default class Synth {
   }
 
   play(duration: number = 1.0, freq: number = 440.0) {
-    this.ops.forEach((op, i) => {
+    this.ops.forEach((op) => {
       op.prepare()
     })
+    /* eslint no-param-reassign: 0 */
     this.ops.forEach((op, i) => {
       const preset = this.algo[i]
       console.log(preset)
