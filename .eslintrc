@@ -1,0 +1,7 @@
+extends: airbnb
+parser: babel-eslint
+env:
+  browser: 1
+rules:
+  semi: 0
+  react/prefer-stateless-function: 0
