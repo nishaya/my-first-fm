@@ -49,15 +49,31 @@ class Note {
 export default class Synth {
   algo: Algorithm
   ctx: AudioContext
+  playingNotes: Map
 
   constructor() {
     this.algo = initPreset.algo
     this.ctx = new AudioContext()
+    this.playingNotes = new Map()
   }
 
   play(noteNumber: number, duration: number = 1.0) {
+    if (this.playingNotes.has(noteNumber)) {
+      console.log('already playing')
+      return
+    }
+
     const note = new Note(this.ctx, this.algo)
     const freq = 440 * (2 ** ((noteNumber - 21) / 12))
+    this.playingNotes.set(noteNumber, note)
     note.play(duration, freq)
+  }
+
+  stop(noteNumber: number) {
+    const note = this.playingNotes.get(noteNumber)
+    if (note) {
+      console.log('stop note')
+      this.playingNotes.delete(noteNumber)
+    }
   }
 }
