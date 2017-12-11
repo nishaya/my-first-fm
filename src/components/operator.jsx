@@ -8,7 +8,7 @@ import type { Props } from './types'
 
 const { Handle } = Slider
 
-const Box = (props: Props) => {
+const OperatorComponent = (props: Props) => {
   return (<div>
     {props.message}
     <Button>PUSH</Button>
@@ -19,4 +19,4 @@ const Box = (props: Props) => {
   </div>)
 }
 
-export default Box
+export default OperatorComponent
