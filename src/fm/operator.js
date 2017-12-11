@@ -36,7 +36,7 @@ export default class Operator {
     this.gain.connect(dest)
   }
 
-  play(duration: number = 1.0, freq: number = 440) {
+  play(freq: number = 440) {
     const playFreq = this.freqRatio * freq
     this.osc.frequency.value = playFreq
 

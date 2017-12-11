@@ -16,7 +16,7 @@ const keys = [
 
 keys.forEach((key, i) => {
   addKeyDownEvent(key, () => {
-    synth.play(i + 12, 0.5)
+    synth.play(i + 12)
   })
 
   addKeyUpEvent(key, () => {

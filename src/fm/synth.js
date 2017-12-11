@@ -41,7 +41,7 @@ class Note {
     })
     this.ops.forEach((op, i) => {
       console.log(`op ${i} play.`)
-      op.play(duration, freq)
+      op.play(freq)
     })
   }
 
