@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
+    "build": "parcel build src/index.html -d docs",
     "start": "parcel src/index.html"
   },
   "dependencies": {
