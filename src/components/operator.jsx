@@ -4,7 +4,8 @@ import React from 'react'
 import { Button, Heading } from '@shopify/polaris'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
-import type { Props } from './types'
+
+type Props = {}
 
 const Slide = Slider.createSliderWithTooltip(Slider)
 const LabbeledSlider = (props: { label: string, children: any }) => {
@@ -23,10 +24,8 @@ const LabbeledSlider = (props: { label: string, children: any }) => {
 
 export default class OperatorComponent extends React.Component<Props> {
   render() {
-    const { message } = this.props
     return (
       <div>
-        {message}
         <Button>PUSH</Button>
         <div style={{ margin: 20 }}>
           <LabbeledSlider label="freq. ratio">
