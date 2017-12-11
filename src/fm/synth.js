@@ -1,7 +1,7 @@
 // @flow
 
 import Operator from './operator'
-import type { Algorithm } from './types'
+import type { Algorithm, Preset } from './types'
 import presets from './presets'
 
 const AudioContext = window.AudioContext || window.webkitAudioContext
@@ -23,7 +23,7 @@ class Note {
     })
   }
 
-  play(duration: number = 1.0, freq: number = 440.0) {
+  play(freq: number = 440.0) {
     this.ops.forEach((op) => {
       op.prepare()
     })
@@ -54,26 +54,26 @@ class Note {
 }
 
 export default class Synth {
-  algo: Algorithm
   ctx: AudioContext
   playingNotes: Map
+  preset: Preset
 
-  constructor() {
-    this.algo = initPreset.algo
+  constructor(preset:Preset = initPreset) {
+    this.preset = preset
     this.ctx = new AudioContext()
     this.playingNotes = new Map()
   }
 
-  play(noteNumber: number, duration: number = 1.0) {
+  play(noteNumber: number) {
     if (this.playingNotes.has(noteNumber)) {
       console.log('already playing')
       return
     }
 
-    const note = new Note(this.ctx, this.algo)
+    const note = new Note(this.ctx, this.preset.algo)
     const freq = 440 * (2 ** ((noteNumber - 21) / 12))
     this.playingNotes.set(noteNumber, note)
-    note.play(duration, freq)
+    note.play(freq)
   }
 
   stop(noteNumber: number) {
