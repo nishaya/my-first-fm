@@ -4,14 +4,12 @@ const keyUpHandlers = {}
 export const activateKeyEvent = () => {
   window.addEventListener('keydown', (e) => {
     const keyName = e.key
-    console.log('keyDown', keyName)
     if (keyDownHandlers[keyName]) {
       keyDownHandlers[keyName]()
     }
   })
   window.addEventListener('keyup', (e) => {
     const keyName = e.key
-    console.log('keyUp', keyName)
     if (keyUpHandlers[keyName]) {
       keyUpHandlers[keyName]()
     }

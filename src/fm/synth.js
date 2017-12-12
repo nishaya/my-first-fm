@@ -18,7 +18,6 @@ class Note {
     this.algo = algorithm
     this.ops = new Array(NUM_OPERATORS).fill(null).map((_, i) => {
       const preset = this.algo[i]
-      console.log(`init op ${i}`, preset)
       return new Operator(this.ctx, preset.params)
     })
   }
@@ -30,7 +29,6 @@ class Note {
     /* eslint no-param-reassign: 0 */
     this.ops.forEach((op, i) => {
       const preset = this.algo[i]
-      console.log(preset)
       if (preset.type === 'modulator') {
         const carrier = this.ops[preset.dest]
         op.gainMult = 1024
@@ -39,15 +37,13 @@ class Note {
         op.connect(this.ctx.destination)
       }
     })
-    this.ops.forEach((op, i) => {
-      console.log(`op ${i} play.`)
+    this.ops.forEach((op) => {
       op.play(freq)
     })
   }
 
   stop() {
-    this.ops.forEach((op, i) => {
-      console.log(`op ${i} stop.`)
+    this.ops.forEach((op) => {
       op.stop()
     })
   }
@@ -55,7 +51,7 @@ class Note {
 
 export default class Synth {
   ctx: AudioContext
-  playingNotes: Map
+  playingNotes: Map<number, Note>
   preset: Preset
 
   constructor(preset:Preset = initPreset) {
@@ -66,7 +62,6 @@ export default class Synth {
 
   play(noteNumber: number) {
     if (this.playingNotes.has(noteNumber)) {
-      console.log('already playing')
       return
     }
 
@@ -79,7 +74,6 @@ export default class Synth {
   stop(noteNumber: number) {
     const note = this.playingNotes.get(noteNumber)
     if (note) {
-      console.log('stop note')
       note.stop()
       this.playingNotes.delete(noteNumber)
     }

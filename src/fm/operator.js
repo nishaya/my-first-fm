@@ -15,7 +15,6 @@ export default class Operator {
   constructor(ctx: AudioContext, params: OperatorParams = {}) {
     this.ctx = ctx
     this.gain = this.ctx.createGain()
-    // this.gain.connect(this.ctx.destination)
     this.level = params.level || 1.0
     this.freqRatio = params.freqRatio || 1.0
     this.adsr = params.adsr || {
@@ -24,7 +23,6 @@ export default class Operator {
       sustain: 0,
       release: 0,
     }
-    console.log(this)
   }
 
   prepare() {
@@ -32,7 +30,7 @@ export default class Operator {
     this.osc.connect(this.gain)
   }
 
-  connect(dest: AudioDestinationNode) {
+  connect(dest: AudioDestinationNode | AudioParam) {
     this.gain.connect(dest)
   }
 
@@ -41,7 +39,6 @@ export default class Operator {
     this.osc.frequency.value = playFreq
 
     const current = this.ctx.currentTime
-    // const { release } = this.adsr
     const level = this.level * this.gainMult
 
     // apply ADSR to gain
@@ -51,7 +48,6 @@ export default class Operator {
       level * this.adsr.sustain,
       current + this.adsr.attack + this.adsr.decay,
     )
-    // this.gain.gain.linearRampToValueAtTime(0, current + duration + release)
     this.osc.start(current)
   }
 
