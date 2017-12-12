@@ -5,6 +5,7 @@ import { Heading, Card } from '@shopify/polaris'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import type { OperatorParams } from 'fm/types'
+import { defaultOperatorParams } from 'fm/operator'
 
 type Props = {
   name: string,
@@ -29,16 +30,7 @@ const LabbeledSlider = (props: { label: string, children: any }) => {
 export default class OperatorComponent extends React.Component<Props> {
   static defaultProps = {
     name: '(no name)',
-    params: {
-      freqRatio: 1.0,
-      level: 1.0,
-      adsr: {
-        attack: 0,
-        decay: 0,
-        sustain: 0,
-        release: 0,
-      },
-    },
+    params: defaultOperatorParams,
   }
 
   render() {
@@ -53,20 +45,20 @@ export default class OperatorComponent extends React.Component<Props> {
               <Slide min={0.1} max={16} step={0.1} defaultValue={params.freqRatio} />
             </LabbeledSlider>
             <LabbeledSlider label="level">
-              <Slide min={0} max={1.0} step={0.01} defaultValue={params.level} />
+              <Slide min={0} max={3.0} step={0.05} defaultValue={params.level} />
             </LabbeledSlider>
             <div>
               <Heading>ADSR</Heading>
-              <LabbeledSlider label="attack">
+              <LabbeledSlider label="attack time">
                 <Slide min={0.001} max={3} step={0.01} defaultValue={adsr.attack} />
               </LabbeledSlider>
-              <LabbeledSlider label="decay">
+              <LabbeledSlider label="decay time">
                 <Slide min={0} max={10} step={0.1} defaultValue={adsr.decay} />
               </LabbeledSlider>
-              <LabbeledSlider label="sustain">
+              <LabbeledSlider label="sustain level">
                 <Slide min={0} max={1.0} step={0.01} defaultValue={adsr.sustain} />
               </LabbeledSlider>
-              <LabbeledSlider label="release">
+              <LabbeledSlider label="release time">
                 <Slide min={0.001} max={10} step={0.1} defaultValue={adsr.release} />
               </LabbeledSlider>
             </div>
