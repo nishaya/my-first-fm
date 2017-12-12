@@ -52,8 +52,6 @@ export default class Operator {
     const current = this.ctx.currentTime
     const level = this.level * this.gainMult
 
-    console.log(`play ${this.level} * ${this.gainMult} = ${level}`)
-
     // apply ADSR to gain
     this.gain.gain.setValueAtTime(0, current)
     this.gain.gain.linearRampToValueAtTime(level, current + this.adsr.attack)

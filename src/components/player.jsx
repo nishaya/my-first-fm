@@ -1,10 +1,11 @@
 // @flow
 
 import React from 'react'
-import { Heading } from '@shopify/polaris'
+import { Heading, Select } from '@shopify/polaris'
 import Synth from 'fm/synth'
 import { activateKeyEvent, addKeyDownEvent, addKeyUpEvent } from 'utils/browser'
-import type { OperatorParams } from 'fm/types'
+import type { OperatorParams, Preset } from 'fm/types'
+import presets from 'fm/presets'
 import OperatorComponent from './operator'
 
 activateKeyEvent()
@@ -28,15 +29,38 @@ keys.forEach((key, i) => {
 
 type Props = {}
 
-export default class Player extends React.Component<Props> {
+type State = {
+  preset: Preset,
+  presetId: number,
+}
+
+const defaultPreset = presets[0]
+synth.preset = defaultPreset
+
+export default class Player extends React.Component<Props, State> {
+  state: State = {
+    preset: defaultPreset,
+    presetId: 0,
+  }
+
   render() {
+    const { preset, presetId } = this.state
     return (
       <div style={{ margin: 20 }}>
-        <Heading>
-          {synth.preset.name}
-        </Heading>
+        <Select
+          label="Preset"
+          value={presetId}
+          options={presets.map((p, i) => (
+            { label: p.name, value: i }
+          ))}
+          onChange={(v) => {
+            const newPreset = presets[v]
+            synth.preset = newPreset
+            this.setState({ preset: newPreset, presetId: v })
+          }}
+        />
         <div>
-          {synth.preset.algo.map((algo, i) => {
+          {preset.algo.map((algo, i) => {
             const key = `op_${i}`
             return (
               <OperatorComponent

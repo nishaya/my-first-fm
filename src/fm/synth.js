@@ -54,14 +54,13 @@ export default class Synth {
   playingNotes: Map<number, Note>
   preset: Preset
 
-  constructor(preset:Preset = initPreset) {
+  constructor(preset: Preset = initPreset) {
     this.preset = preset
     this.ctx = getAudioContext()
     this.playingNotes = new Map()
   }
 
   setOperatorParams(index: number, params: OperatorParams) {
-    console.log('setOperatorParams', params)
     this.preset.algo[index].params = params
   }
 
