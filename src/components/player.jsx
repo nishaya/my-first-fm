@@ -37,6 +37,7 @@ export default class Player extends React.Component<Props> {
             return (
               <OperatorComponent
                 name={`Operator #${i} (${algo.type})`}
+                params={algo.params}
                 key={key}
               />)
           })}

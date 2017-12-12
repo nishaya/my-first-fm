@@ -10,15 +10,15 @@ export type ADSR = {
 }
 
 export type OperatorParams = {
-  freqRatio?: number,
-  adsr?: ADSR,
-  level?: number,
+  freqRatio: number,
+  adsr: ADSR,
+  level: number,
 }
 
 export type OperatorNode = {
   dest: number,
   type: OperatorNodeType,
-  params?: OperatorParams,
+  params: OperatorParams,
 }
 
 export type Algorithm = Array<OperatorNode>

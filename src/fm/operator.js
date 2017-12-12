@@ -2,6 +2,17 @@
 
 import type { OperatorParams, ADSR } from './types'
 
+export const defaultOperatorParams = {
+  freqRatio: 1.0,
+  level: 1.0,
+  adsr: {
+    attack: 0,
+    decay: 0,
+    sustain: 1.0,
+    release: 0,
+  },
+}
+
 export default class Operator {
   ctx: AudioContext
   dest: AudioDestinationNode
@@ -12,7 +23,7 @@ export default class Operator {
   adsr: ADSR
   gainMult = 1.0
 
-  constructor(ctx: AudioContext, params: OperatorParams = {}) {
+  constructor(ctx: AudioContext, params: OperatorParams = defaultOperatorParams) {
     this.ctx = ctx
     this.gain = this.ctx.createGain()
     this.level = params.level || 1.0
