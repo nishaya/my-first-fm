@@ -49,13 +49,13 @@ const preset = {
       dest: 2,
       type: 'modulator',
       params: {
-        freqRatio: 1,
-        level: 0.3,
+        freqRatio: 9.0,
+        level: 0.1,
         adsr: {
           attack: 0.001,
           decay: 0,
           sustain: 1,
-          release: 0.3,
+          release: 1.0,
         },
       },
     },
