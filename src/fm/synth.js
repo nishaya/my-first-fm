@@ -31,7 +31,7 @@ class Note {
       const preset = this.algo[i]
       if (preset.type === 'modulator') {
         const carrier = this.ops[preset.dest]
-        op.gainMult = 1024
+        op.gainMult = 1024 * 10
         op.connect(carrier.osc.frequency)
       } else {
         op.connect(this.ctx.destination)

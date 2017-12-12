@@ -26,8 +26,8 @@ export default class Operator {
   constructor(ctx: AudioContext, params: OperatorParams = defaultOperatorParams) {
     this.ctx = ctx
     this.gain = this.ctx.createGain()
-    this.level = params.level || 1.0
-    this.freqRatio = params.freqRatio || 1.0
+    this.level = params.level
+    this.freqRatio = params.freqRatio
     this.adsr = params.adsr || {
       attack: 0.001,
       decay: 0,
@@ -52,6 +52,8 @@ export default class Operator {
     const current = this.ctx.currentTime
     const level = this.level * this.gainMult
 
+    console.log(`play ${this.level} * ${this.gainMult} = ${level}`)
+
     // apply ADSR to gain
     this.gain.gain.setValueAtTime(0, current)
     this.gain.gain.linearRampToValueAtTime(level, current + this.adsr.attack)
@@ -66,7 +68,7 @@ export default class Operator {
     const { release } = this.adsr
     const current = this.ctx.currentTime
     const duration = current + release + 0.002
-    this.gain.gain.cancelScheduledValues(current)
+    this.gain.gain.cancelAndHoldAtTime(current)
     this.gain.gain.linearRampToValueAtTime(0, duration)
     this.osc.stop(duration + 0.002)
   }
