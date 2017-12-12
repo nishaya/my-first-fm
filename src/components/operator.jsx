@@ -5,14 +5,16 @@ import { Heading, Card } from '@shopify/polaris'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 
-type Props = {}
+type Props = {
+  name: string,
+}
 
 const Slide = Slider.createSliderWithTooltip(Slider)
 const LabbeledSlider = (props: { label: string, children: any }) => {
   const { label, children } = props
   return (
-    <div>
-      <div>
+    <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: 4 }}>
         {label}
       </div>
       <div>
@@ -23,11 +25,17 @@ const LabbeledSlider = (props: { label: string, children: any }) => {
 }
 
 export default class OperatorComponent extends React.Component<Props> {
+  static defaultProps = {
+    name: '(no name)',
+  }
+
   render() {
+    const { name } = this.props
+
     return (
-      <div style={{ width: 200, display: 'inline-block', margin: 5 }}>
-        <Card title="Operator #">
-          <div style={{ margin: 20 }}>
+      <div style={{ width: 250, display: 'inline-block', margin: 5 }}>
+        <Card title={`${name}`}>
+          <div style={{ margin: 24 }}>
             <LabbeledSlider label="freq. ratio">
               <Slide min={0.1} max={16} step={0.1} />
             </LabbeledSlider>

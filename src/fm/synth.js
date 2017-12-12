@@ -1,10 +1,10 @@
 // @flow
 
+import { getAudioContext } from 'utils/audio'
 import Operator from './operator'
 import type { Algorithm, Preset } from './types'
 import presets from './presets'
 
-const AudioContext = window.AudioContext || window.webkitAudioContext
 const NUM_OPERATORS = 4
 const initPreset = presets[1]
 
@@ -60,7 +60,7 @@ export default class Synth {
 
   constructor(preset:Preset = initPreset) {
     this.preset = preset
-    this.ctx = new AudioContext()
+    this.ctx = getAudioContext()
     this.playingNotes = new Map()
   }
 
@@ -84,12 +84,4 @@ export default class Synth {
       this.playingNotes.delete(noteNumber)
     }
   }
-}
-
-if (module.hot) {
-  module.hot.accept((e) => {
-    if (e) {
-      console.error(e)
-    }
-  })
 }
