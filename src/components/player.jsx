@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Heading, Select } from '@shopify/polaris'
+import { Select } from '@shopify/polaris'
 import Synth from 'fm/synth'
 import { activateKeyEvent, addKeyDownEvent, addKeyUpEvent } from 'utils/browser'
 import type { OperatorParams, Preset } from 'fm/types'
