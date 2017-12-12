@@ -12,6 +12,10 @@ type Props = {
   params: OperatorParams,
 }
 
+type State = {
+  params: OperatorParams,
+}
+
 const Slide = Slider.createSliderWithTooltip(Slider)
 const LabbeledSlider = (props: { label: string, children: any }) => {
   const { label, children } = props
@@ -27,14 +31,19 @@ const LabbeledSlider = (props: { label: string, children: any }) => {
   )
 }
 
-export default class OperatorComponent extends React.Component<Props> {
+export default class OperatorComponent extends React.Component<Props, State> {
   static defaultProps = {
     name: '(no name)',
     params: defaultOperatorParams,
   }
 
+  state: State = {
+    params: defaultOperatorParams,
+  }
+
   render() {
-    const { name, params } = this.props
+    const { name } = this.props
+    const { params } = this.state
     const { adsr } = params
 
     return (
