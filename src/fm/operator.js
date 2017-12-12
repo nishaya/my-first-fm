@@ -20,27 +20,10 @@ export default class Operator {
   gainMult = 1.0
   params: OperatorParams
 
-  /*
-  level: number
-  freqRatio: number
-  adsr: ADSR
-  */
-
   constructor(ctx: AudioContext, params: OperatorParams = defaultOperatorParams) {
+    this.params = params
     this.ctx = ctx
     this.gain = this.ctx.createGain()
-    this.params = params
-
-    /*
-    this.level = params.level
-    this.freqRatio = params.freqRatio
-    this.adsr = params.adsr || {
-      attack: 0.001,
-      decay: 0,
-      sustain: 0,
-      release: 0,
-    }
-    */
   }
 
   prepare() {
