@@ -31,6 +31,9 @@ export default class OperatorComponent extends React.Component<Props> {
             <LabbeledSlider label="freq. ratio">
               <Slide min={0.1} max={16} step={0.1} />
             </LabbeledSlider>
+            <LabbeledSlider label="level">
+              <Slide min={0} max={1.0} step={0.01} />
+            </LabbeledSlider>
             <div>
               <Heading>ADSR</Heading>
               <LabbeledSlider label="attack">
