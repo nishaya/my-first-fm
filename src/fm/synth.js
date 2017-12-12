@@ -85,3 +85,11 @@ export default class Synth {
     }
   }
 }
+
+if (module.hot) {
+  module.hot.accept((e) => {
+    if (e) {
+      console.error(e)
+    }
+  })
+}

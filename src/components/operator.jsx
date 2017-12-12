@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Button, Heading } from '@shopify/polaris'
+import { Heading, Card } from '@shopify/polaris'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 
@@ -25,28 +25,29 @@ const LabbeledSlider = (props: { label: string, children: any }) => {
 export default class OperatorComponent extends React.Component<Props> {
   render() {
     return (
-      <div>
-        <Button>PUSH</Button>
-        <div style={{ margin: 20 }}>
-          <LabbeledSlider label="freq. ratio">
-            <Slide min={0.1} max={16} step={0.1} />
-          </LabbeledSlider>
-          <div>
-            <Heading>ADSR</Heading>
-            <LabbeledSlider label="attack">
-              <Slide min={0.001} max={3} step={0.01} />
+      <div style={{ width: 200, display: 'inline-block', margin: 5 }}>
+        <Card title="Operator #">
+          <div style={{ margin: 20 }}>
+            <LabbeledSlider label="freq. ratio">
+              <Slide min={0.1} max={16} step={0.1} />
             </LabbeledSlider>
-            <LabbeledSlider label="decay">
-              <Slide min={0} max={10} step={0.1} />
-            </LabbeledSlider>
-            <LabbeledSlider label="sustain">
-              <Slide min={0} max={1.0} step={0.01} />
-            </LabbeledSlider>
-            <LabbeledSlider label="release">
-              <Slide min={0.001} max={10} step={0.1} />
-            </LabbeledSlider>
+            <div>
+              <Heading>ADSR</Heading>
+              <LabbeledSlider label="attack">
+                <Slide min={0.001} max={3} step={0.01} />
+              </LabbeledSlider>
+              <LabbeledSlider label="decay">
+                <Slide min={0} max={10} step={0.1} />
+              </LabbeledSlider>
+              <LabbeledSlider label="sustain">
+                <Slide min={0} max={1.0} step={0.01} />
+              </LabbeledSlider>
+              <LabbeledSlider label="release">
+                <Slide min={0.001} max={10} step={0.1} />
+              </LabbeledSlider>
+            </div>
           </div>
-        </div>
+        </Card>
       </div>)
   }
 }

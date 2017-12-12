@@ -30,8 +30,11 @@ export default class Player extends React.Component<Props> {
   render() {
     return (
       <div>
-        player
-        <OperatorComponent />
+        preset name: {synth.preset.name}
+        {synth.preset.algo.map((algo, i) => {
+          const key = `op_${i}`
+          return (<OperatorComponent key={key} />)
+        })}
       </div>
     )
   }
