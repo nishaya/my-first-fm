@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { Heading } from '@shopify/polaris'
 import Synth from 'fm/synth'
 import { activateKeyEvent, addKeyDownEvent, addKeyUpEvent } from 'utils/browser'
 import type { OperatorParams } from 'fm/types'
@@ -30,8 +31,10 @@ type Props = {}
 export default class Player extends React.Component<Props> {
   render() {
     return (
-      <div>
-        preset name: {synth.preset.name}
+      <div style={{ margin: 20 }}>
+        <Heading>
+          {synth.preset.name}
+        </Heading>
         <div>
           {synth.preset.algo.map((algo, i) => {
             const key = `op_${i}`
