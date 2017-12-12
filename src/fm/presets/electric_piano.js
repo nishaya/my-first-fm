@@ -26,8 +26,8 @@ const preset = {
         adsr: {
           attack: 0.001,
           decay: 0.1,
-          sustain: 0,
-          release: 0.001,
+          sustain: 0.1,
+          release: 0.3,
         },
       },
     },

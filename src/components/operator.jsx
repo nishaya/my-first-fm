@@ -110,7 +110,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="decay time">
                 <Slide
                   min={0}
-                  max={10}
+                  max={3}
                   step={0.1}
                   value={adsr.decay}
                   onChange={(value) => { this.changeParam(value, 'adsr.decay') }}
@@ -128,7 +128,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="release time">
                 <Slide
                   min={0.001}
-                  max={10}
+                  max={3}
                   step={0.1}
                   value={adsr.release}
                   onChange={(value) => { this.changeParam(value, 'adsr.release') }}

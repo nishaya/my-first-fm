@@ -47,18 +47,20 @@ export default class Player extends React.Component<Props, State> {
     const { preset, presetId } = this.state
     return (
       <div style={{ margin: 20 }}>
-        <Select
-          label="Preset"
-          value={presetId}
-          options={presets.map((p, i) => (
-            { label: p.name, value: i }
-          ))}
-          onChange={(v) => {
-            const newPreset = presets[v]
-            synth.preset = newPreset
-            this.setState({ preset: newPreset, presetId: v })
-          }}
-        />
+        <div style={{ width: 240 }}>
+          <Select
+            label="Preset"
+            value={presetId}
+            options={presets.map((p, i) => (
+              { label: p.name, value: i }
+            ))}
+            onChange={(v) => {
+              const newPreset = presets[v]
+              synth.preset = newPreset
+              this.setState({ preset: newPreset, presetId: v })
+            }}
+          />
+        </div>
         <div>
           {preset.algo.map((algo, i) => {
             const key = `op_${i}`
