@@ -3,6 +3,7 @@
 import React from 'react'
 import Synth from 'fm/synth'
 import { activateKeyEvent, addKeyDownEvent, addKeyUpEvent } from 'utils/browser'
+import type { OperatorParams } from 'fm/types'
 import OperatorComponent from './operator'
 
 activateKeyEvent()
@@ -39,6 +40,7 @@ export default class Player extends React.Component<Props> {
                 name={`Operator #${i} (${algo.type})`}
                 params={algo.params}
                 key={key}
+                onChangeParams={(params: OperatorParams) => { synth.setOperatorParams(i, params) }}
               />)
           })}
         </div>

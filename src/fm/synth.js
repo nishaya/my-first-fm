@@ -2,7 +2,7 @@
 
 import { getAudioContext } from 'utils/audio'
 import Operator from './operator'
-import type { Algorithm, Preset } from './types'
+import type { Algorithm, Preset, OperatorParams } from './types'
 import presets from './presets'
 
 const NUM_OPERATORS = 4
@@ -58,6 +58,11 @@ export default class Synth {
     this.preset = preset
     this.ctx = getAudioContext()
     this.playingNotes = new Map()
+  }
+
+  setOperatorParams(index: number, params: OperatorParams) {
+    console.log('setOperatorParams', params)
+    this.preset.algo[index].params = params
   }
 
   play(noteNumber: number) {
