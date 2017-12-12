@@ -7,13 +7,13 @@ const preset = {
       dest: -1,
       type: 'carrier',
       params: {
-        freqRatio: 1.0,
+        freqRatio: 0.5,
         level: 1.0,
         adsr: {
           attack: 0.001,
           decay: 1,
           sustain: 1,
-          release: 0.5,
+          release: 0.2,
         },
       },
     },
@@ -21,8 +21,8 @@ const preset = {
       dest: 0,
       type: 'modulator',
       params: {
-        freqRatio: 14,
-        level: 0.4,
+        freqRatio: 0.5,
+        level: 0.6,
         adsr: {
           attack: 0.001,
           decay: 0.1,
@@ -32,29 +32,29 @@ const preset = {
       },
     },
     {
-      dest: -1,
-      type: 'carrier',
+      dest: 0,
+      type: 'modulator',
       params: {
-        freqRatio: 1,
-        level: 1.0,
+        freqRatio: 0.5,
+        level: 0.2,
         adsr: {
           attack: 0.001,
           decay: 0,
           sustain: 1,
-          release: 0.5,
+          release: 0.2,
         },
       },
     },
     {
-      dest: 2,
+      dest: 0,
       type: 'modulator',
       params: {
-        freqRatio: 1,
-        level: 0.3,
+        freqRatio: 1.666,
+        level: 0.1,
         adsr: {
-          attack: 0.001,
+          attack: 0.2,
           decay: 0,
-          sustain: 1,
+          sustain: 1.0,
           release: 0.3,
         },
       },
