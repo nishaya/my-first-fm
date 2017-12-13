@@ -73,6 +73,9 @@ export default class Player extends React.Component<Props, State> {
               />)
           })}
         </div>
+        <div>
+          <textarea rows={100} cols={50} defaultValue={JSON.stringify(preset, null, 4)} />
+        </div>
       </div>
     )
   }

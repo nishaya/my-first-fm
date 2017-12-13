@@ -37,7 +37,7 @@ export default class Operator {
 
   play(freq: number = 440) {
     const playFreq = this.params.freqRatio * freq
-    this.osc.frequency.value = playFreq
+    this.osc.frequency.setTargetAtTime(playFreq, this.ctx.currentTime, 0)
 
     const { attack, decay, sustain } = this.params.adsr
     const level = this.params.level * this.gainMult

@@ -22,7 +22,7 @@ class Note {
     })
   }
 
-  play(freq: number = 440.0) {
+  play(freq: number = 440.0, gain: AudioDestinationNode = null) {
     this.ops.forEach((op) => {
       op.prepare()
     })
@@ -34,7 +34,7 @@ class Note {
         op.gainMult = 1024 * 10
         op.connect(carrier.osc.frequency)
       } else {
-        op.connect(this.ctx.destination)
+        op.connect(gain || this.ctx.destination)
       }
     })
     this.ops.forEach((op) => {
@@ -53,11 +53,21 @@ export default class Synth {
   ctx: AudioContext
   playingNotes: Map<number, Note>
   preset: Preset
+  level: number
+  gain: GainNode
 
   constructor(preset: Preset = initPreset) {
     this.preset = preset
     this.ctx = getAudioContext()
     this.playingNotes = new Map()
+    this.gain = this.ctx.createGain()
+    this.setLevel(1.0)
+    this.gain.connect(this.ctx.destination)
+  }
+
+  setLevel(level: number) {
+    this.level = level
+    this.gain.gain.setTargetAtTime(this.level, this.ctx.currentTime, 0)
   }
 
   setOperatorParams(index: number, params: OperatorParams) {
@@ -72,7 +82,7 @@ export default class Synth {
     const note = new Note(this.ctx, this.preset.algo)
     const freq = 440 * (2 ** ((noteNumber - 21) / 12))
     this.playingNotes.set(noteNumber, note)
-    note.play(freq)
+    note.play(freq, this.gain)
   }
 
   stop(noteNumber: number) {
