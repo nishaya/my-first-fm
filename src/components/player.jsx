@@ -71,7 +71,7 @@ export default class Player extends React.Component<Props, State> {
             const key = `op_${i}`
             return (
               <OperatorComponent
-                name={`Operator #${i} (${algo.type})`}
+                name={`${algo.type} #${i}`}
                 params={algo.params}
                 key={key}
                 onChangeParams={(params: OperatorParams) => {

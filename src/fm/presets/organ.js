@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: 0 */
 
 const preset = {
-  name: 'Organ (#12)',
+  name: '2. Organ (#12)',
   algo: [
     {
       dest: -1,

@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: 0 */
 
 const preset = {
-  name: 'Electric Piano (#8)',
+  name: '1. Electric Piano (#8)',
   algo: [
     {
       dest: -1,

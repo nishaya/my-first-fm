@@ -1,7 +1,7 @@
 /* eslint import/prefer-default-export: 0 */
 
 const preset = {
-  name: 'Synth Bass (#5)',
+  name: '3. Synth Bass (#5)',
   algo: [
     {
       dest: -1,
