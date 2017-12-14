@@ -22,7 +22,7 @@ class Note {
     })
   }
 
-  play(freq: number = 440.0, gain: AudioDestinationNode = null) {
+  play(freq: number = 440.0, gain: ?GainNode = null) {
     this.ops.forEach((op) => {
       op.prepare()
     })

@@ -17,6 +17,10 @@ const keys = [
   'k', 'o', 'l', 'p',
 ]
 
+const clone = (obj: Object) => (
+  JSON.parse(JSON.stringify(obj))
+)
+
 keys.forEach((key, i) => {
   addKeyDownEvent(key, () => {
     synth.play(i + 12)
@@ -55,7 +59,8 @@ export default class Player extends React.Component<Props, State> {
               { label: p.name, value: i }
             ))}
             onChange={(v) => {
-              const newPreset = presets[v]
+              const newPreset = clone(presets[v])
+              console.log(newPreset)
               synth.preset = newPreset
               this.setState({ preset: newPreset, presetId: v })
             }}
@@ -69,12 +74,20 @@ export default class Player extends React.Component<Props, State> {
                 name={`Operator #${i} (${algo.type})`}
                 params={algo.params}
                 key={key}
-                onChangeParams={(params: OperatorParams) => { synth.setOperatorParams(i, params) }}
+                onChangeParams={(params: OperatorParams) => {
+                  const newPreset = clone(preset)
+                  const newParams = clone(params)
+                  newPreset.algo[i].params = newParams
+                  this.setState({ preset: newPreset })
+                  synth.setOperatorParams(i, newParams)
+                }}
               />)
           })}
         </div>
         <div>
-          <textarea rows={100} cols={50} defaultValue={JSON.stringify(preset, null, 4)} />
+          <pre>
+            {JSON.stringify(preset, null, 4)}
+          </pre>
         </div>
       </div>
     )

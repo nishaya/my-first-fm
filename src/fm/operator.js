@@ -1,6 +1,6 @@
 // @flow
 
-import type { OperatorParams, ADSR } from './types'
+import type { OperatorParams } from './types'
 
 export const defaultOperatorParams = {
   freqRatio: 1.0,
@@ -13,12 +13,15 @@ export const defaultOperatorParams = {
   },
 }
 
+type Destination = GainNode | AudioDestinationNode | AudioParam
+
 export default class Operator {
   ctx: AudioContext
   osc: OscillatorNode
   gain: GainNode
   gainMult = 1.0
   params: OperatorParams
+  dest: Destination
 
   constructor(ctx: AudioContext, params: OperatorParams = defaultOperatorParams) {
     this.params = params
@@ -31,7 +34,8 @@ export default class Operator {
     this.osc.connect(this.gain)
   }
 
-  connect(dest: AudioDestinationNode | AudioParam) {
+  connect(dest: Destination) {
+    this.dest = dest
     this.gain.connect(dest)
   }
 
@@ -50,6 +54,10 @@ export default class Operator {
       level * sustain,
       current + attack + decay,
     )
+    this.osc.onended = () => {
+      this.osc.disconnect(this.gain)
+      this.gain.disconnect(this.dest)
+    }
     this.osc.start(current)
   }
 
@@ -58,7 +66,11 @@ export default class Operator {
     const current = this.ctx.currentTime
     const duration = current + release + 0.002
 
-    this.gain.gain.cancelAndHoldAtTime(current)
+    if (this.gain.gain.cancelAndHoldAtTime) {
+      this.gain.gain.cancelAndHoldAtTime(current)
+    } else {
+      this.gain.gain.cancelScheduledValues(current)
+    }
     this.gain.gain.linearRampToValueAtTime(0, duration)
     this.osc.stop(duration + 0.002)
   }
