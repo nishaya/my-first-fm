@@ -84,11 +84,6 @@ export default class Player extends React.Component<Props, State> {
               />)
           })}
         </div>
-        <div>
-          <pre>
-            {JSON.stringify(preset, null, 4)}
-          </pre>
-        </div>
       </div>
     )
   }
