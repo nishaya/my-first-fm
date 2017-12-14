@@ -90,7 +90,6 @@ export default class Player extends React.Component<Props, State> {
             ))}
             onChange={(v) => {
               const newPreset = clone(presets[v])
-              console.log(newPreset)
               synth.preset = newPreset
               this.setState({ preset: newPreset, presetId: v })
             }}
