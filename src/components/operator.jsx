@@ -6,6 +6,12 @@ import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import type { OperatorParams } from 'fm/types'
 import { defaultOperatorParams } from 'fm/operator'
+import {
+  MAX_ATTACK,
+  MAX_DECAY,
+  MAX_SUSTAIN,
+  MAX_RELEASE,
+} from 'fm/params'
 import ADSRVisualizer from './adsr'
 
 type Props = {
@@ -103,7 +109,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="attack time">
                 <Slide
                   min={0.001}
-                  max={3}
+                  max={MAX_ATTACK}
                   step={0.01}
                   value={adsr.attack}
                   onChange={(value) => { this.changeParam(value, 'adsr.attack') }}
@@ -112,7 +118,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="decay time">
                 <Slide
                   min={0}
-                  max={3}
+                  max={MAX_DECAY}
                   step={0.1}
                   value={adsr.decay}
                   onChange={(value) => { this.changeParam(value, 'adsr.decay') }}
@@ -121,7 +127,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="sustain level">
                 <Slide
                   min={0}
-                  max={1.0}
+                  max={MAX_SUSTAIN}
                   step={0.01}
                   value={adsr.sustain}
                   onChange={(value) => { this.changeParam(value, 'adsr.sustain') }}
@@ -130,7 +136,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="release time">
                 <Slide
                   min={0.001}
-                  max={4}
+                  max={MAX_RELEASE}
                   step={0.1}
                   value={adsr.release}
                   onChange={(value) => { this.changeParam(value, 'adsr.release') }}

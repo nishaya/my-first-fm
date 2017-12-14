@@ -36,7 +36,7 @@ const preset = {
       type: 'carrier',
       params: {
         freqRatio: 1,
-        level: 1.0,
+        level: 1.002,
         adsr: {
           attack: 0.001,
           decay: 0,
