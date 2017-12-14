@@ -61,7 +61,7 @@ export default class Synth {
     this.ctx = getAudioContext()
     this.playingNotes = new Map()
     this.gain = this.ctx.createGain()
-    this.setLevel(1.0)
+    this.setLevel(0.3)
     this.gain.connect(this.ctx.destination)
   }
 
