@@ -27,6 +27,7 @@ type State = {
   preset: Preset,
   presetId: number,
   pressedKeys: Array<string>,
+  octave: number,
 }
 
 const defaultPreset = presets[0]
@@ -59,26 +60,47 @@ export default class Player extends React.Component<Props, State> {
     preset: defaultPreset,
     presetId: 0,
     pressedKeys: [],
+    octave: 1,
   }
 
   componentDidMount() {
+    let { octave } = this.state
     keys.forEach((key, i) => {
       addKeyDownEvent(key, () => {
         const { pressedKeys } = this.state
         this.setState({ pressedKeys: pressedKeys.filter(pk => pk !== key).concat(key) })
-        synth.play(i + 12)
+        synth.play(i + 12 * octave)
       })
 
       addKeyUpEvent(key, () => {
         const { pressedKeys } = this.state
         this.setState({ pressedKeys: pressedKeys.filter(pk => pk !== key) })
-        synth.stop(i + 12)
+        synth.stop(i + 12 * octave)
       })
+    })
+
+    addKeyUpEvent('z', () => {
+      if (octave > -7) {
+        octave -= 1
+      }
+      this.setState({ octave })
+    })
+
+    addKeyUpEvent('x', () => {
+      if (octave < 7) {
+        octave += 1
+      }
+      this.setState({ octave })
     })
   }
 
   render() {
-    const { preset, presetId, pressedKeys } = this.state
+    const {
+      preset,
+      presetId,
+      pressedKeys,
+      octave,
+    } = this.state
     return (
       <div style={{ margin: 20 }}>
         <div style={{ width: 240 }}>
@@ -130,6 +152,7 @@ export default class Player extends React.Component<Props, State> {
               </div>)
           })}
         </div>
+        octave shift [z/x]: {octave}
       </div>
     )
   }
