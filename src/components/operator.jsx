@@ -6,6 +6,7 @@ import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import type { OperatorParams } from 'fm/types'
 import { defaultOperatorParams } from 'fm/operator'
+import ADSRVisualizer from './adsr'
 
 type Props = {
   name: string,
@@ -98,6 +99,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
             </LabbeledSlider>
             <div>
               <Heading>ADSR</Heading>
+              <ADSRVisualizer adsr={adsr} />
               <LabbeledSlider label="attack time">
                 <Slide
                   min={0.001}
@@ -128,7 +130,7 @@ export default class OperatorComponent extends React.Component<Props, State> {
               <LabbeledSlider label="release time">
                 <Slide
                   min={0.001}
-                  max={3}
+                  max={4}
                   step={0.1}
                   value={adsr.release}
                   onChange={(value) => { this.changeParam(value, 'adsr.release') }}
