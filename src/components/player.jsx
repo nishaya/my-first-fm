@@ -21,34 +21,64 @@ const clone = (obj: Object) => (
   JSON.parse(JSON.stringify(obj))
 )
 
-keys.forEach((key, i) => {
-  addKeyDownEvent(key, () => {
-    synth.play(i + 12)
-  })
-
-  addKeyUpEvent(key, () => {
-    synth.stop(i + 12)
-  })
-})
-
 type Props = {}
 
 type State = {
   preset: Preset,
   presetId: number,
+  pressedKeys: Array<string>,
 }
 
 const defaultPreset = presets[0]
 synth.preset = defaultPreset
 
+const keyStyle = {
+  width: 30,
+  padding: 4,
+  margin: 4,
+  textAlign: 'center',
+  display: 'inline-block',
+  height: 150,
+  fontSize: 'large',
+  fontWeight: 800,
+  background: '#fff',
+  color: '#333',
+  boxShadow: '4px 4px 0px 0px rgba(0, 0, 0, 0.2)',
+}
+
+const blackKeyStyle = {
+  ...keyStyle,
+  background: '#333',
+  color: '#fff',
+}
+
+const blackKeys = [1, 3, 6, 8, 10]
+
 export default class Player extends React.Component<Props, State> {
   state: State = {
     preset: defaultPreset,
     presetId: 0,
+    pressedKeys: [],
+  }
+
+  componentDidMount() {
+    keys.forEach((key, i) => {
+      addKeyDownEvent(key, () => {
+        const { pressedKeys } = this.state
+        this.setState({ pressedKeys: pressedKeys.filter(pk => pk !== key).concat(key) })
+        synth.play(i + 12)
+      })
+
+      addKeyUpEvent(key, () => {
+        const { pressedKeys } = this.state
+        this.setState({ pressedKeys: pressedKeys.filter(pk => pk !== key) })
+        synth.stop(i + 12)
+      })
+    })
   }
 
   render() {
-    const { preset, presetId } = this.state
+    const { preset, presetId, pressedKeys } = this.state
     return (
       <div style={{ margin: 20 }}>
         <div style={{ width: 240 }}>
@@ -82,6 +112,23 @@ export default class Player extends React.Component<Props, State> {
                   synth.setOperatorParams(i, newParams)
                 }}
               />)
+          })}
+        </div>
+        <div>
+          {keys.map((key, i) => {
+            const style = blackKeys.includes(i % 12) ? blackKeyStyle : keyStyle
+            const aStyle = {}
+            if (pressedKeys.includes(key)) {
+              aStyle.boxShadow = '2px 2px 0px 0px rgba(0, 0, 0, 0.2)'
+              aStyle.transform = 'translate(4px,4px)'
+            }
+            return (
+              <div
+                style={{ ...style, ...aStyle }}
+                key={`k_${key}`}
+              >
+                {key.toUpperCase()}
+              </div>)
           })}
         </div>
       </div>
