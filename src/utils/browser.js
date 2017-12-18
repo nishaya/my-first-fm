@@ -1,14 +1,14 @@
 const keyDownHandlers = {}
 const keyUpHandlers = {}
 
-const keydown = (e) => {
+const keydown = e => {
   const keyName = e.key
   if (keyDownHandlers[keyName]) {
     keyDownHandlers[keyName]()
   }
 }
 
-const keyup = (e) => {
+const keyup = e => {
   const keyName = e.key
   if (keyUpHandlers[keyName]) {
     keyUpHandlers[keyName]()

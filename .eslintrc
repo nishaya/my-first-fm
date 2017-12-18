@@ -1,11 +1,18 @@
-extends: plugin:prettier/recommended
+extends:
+  - standard
+  - plugin:flowtype/recommended
+  - plugin:react/recommended
+  - prettier
+  - prettier/flowtype
+  - prettier/react
+  - prettier/standard
+plugins:
+  - flowtype
+  - react
+  - prettier
+  - standard
 parser: babel-eslint
 env:
   browser: 1
 rules:
-  semi: 0
-  no-mixed-operators: 0
-  react/prefer-stateless-function: 0
-  import/extensions: 0
-  import/no-extraneous-dependencies: 0
-  import/no-unresolved: 0
+  prettier/prettier: 2
