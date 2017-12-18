@@ -23,7 +23,7 @@ class Note {
   }
 
   play(freq: number = 440.0, gain: ?GainNode = null) {
-    this.ops.forEach((op) => {
+    this.ops.forEach(op => {
       op.prepare()
     })
     /* eslint no-param-reassign: 0 */
@@ -37,13 +37,13 @@ class Note {
         op.connect(gain || this.ctx.destination)
       }
     })
-    this.ops.forEach((op) => {
+    this.ops.forEach(op => {
       op.play(freq)
     })
   }
 
   stop() {
-    this.ops.forEach((op) => {
+    this.ops.forEach(op => {
       op.stop()
     })
   }
@@ -80,7 +80,7 @@ export default class Synth {
     }
 
     const note = new Note(this.ctx, this.preset.algo)
-    const freq = 440 * (2 ** ((noteNumber - 21) / 12))
+    const freq = 440 * 2 ** ((noteNumber - 21) / 12)
     this.playingNotes.set(noteNumber, note)
     note.play(freq, this.gain)
   }

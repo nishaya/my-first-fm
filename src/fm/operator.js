@@ -23,7 +23,10 @@ export default class Operator {
   params: OperatorParams
   dest: Destination
 
-  constructor(ctx: AudioContext, params: OperatorParams = defaultOperatorParams) {
+  constructor(
+    ctx: AudioContext,
+    params: OperatorParams = defaultOperatorParams,
+  ) {
     this.params = params
     this.ctx = ctx
     this.gain = this.ctx.createGain()

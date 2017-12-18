@@ -12,14 +12,25 @@ activateKeyEvent()
 const synth = new Synth()
 
 const keys = [
-  'a', 'w', 's', 'e', 'd', 'f',
-  't', 'g', 'y', 'h', 'u', 'j',
-  'k', 'o', 'l', 'p',
+  'a',
+  'w',
+  's',
+  'e',
+  'd',
+  'f',
+  't',
+  'g',
+  'y',
+  'h',
+  'u',
+  'j',
+  'k',
+  'o',
+  'l',
+  'p',
 ]
 
-const clone = (obj: Object) => (
-  JSON.parse(JSON.stringify(obj))
-)
+const clone = (obj: Object) => JSON.parse(JSON.stringify(obj))
 
 type Props = {}
 
@@ -68,7 +79,9 @@ export default class Player extends React.Component<Props, State> {
     keys.forEach((key, i) => {
       addKeyDownEvent(key, () => {
         const { pressedKeys } = this.state
-        this.setState({ pressedKeys: pressedKeys.filter(pk => pk !== key).concat(key) })
+        this.setState({
+          pressedKeys: pressedKeys.filter(pk => pk !== key).concat(key),
+        })
         synth.play(i + 12 * octave)
       })
 
@@ -95,22 +108,15 @@ export default class Player extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      preset,
-      presetId,
-      pressedKeys,
-      octave,
-    } = this.state
+    const { preset, presetId, pressedKeys, octave } = this.state
     return (
       <div style={{ margin: 20 }}>
         <div style={{ width: 240 }}>
           <Select
             label="Preset"
             value={presetId}
-            options={presets.map((p, i) => (
-              { label: p.name, value: i }
-            ))}
-            onChange={(v) => {
+            options={presets.map((p, i) => ({ label: p.name, value: i }))}
+            onChange={v => {
               const newPreset = clone(presets[v])
               synth.preset = newPreset
               this.setState({ preset: newPreset, presetId: v })
@@ -132,7 +138,8 @@ export default class Player extends React.Component<Props, State> {
                   this.setState({ preset: newPreset })
                   synth.setOperatorParams(i, newParams)
                 }}
-              />)
+              />
+            )
           })}
         </div>
         <div>
@@ -144,12 +151,10 @@ export default class Player extends React.Component<Props, State> {
               aStyle.transform = 'translate(4px,4px)'
             }
             return (
-              <div
-                style={{ ...style, ...aStyle }}
-                key={`k_${key}`}
-              >
+              <div style={{ ...style, ...aStyle }} key={`k_${key}`}>
                 {key.toUpperCase()}
-              </div>)
+              </div>
+            )
           })}
         </div>
         octave shift [z/x]: {octave}
