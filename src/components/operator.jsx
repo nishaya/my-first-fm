@@ -12,7 +12,7 @@ import ADSRVisualizer from './adsr'
 type Props = {
   name: string,
   params: OperatorParams,
-  onChangeParams: (params: OperatorParams) => any
+  onChangeParams: (params: OperatorParams) => any,
 }
 
 type State = {

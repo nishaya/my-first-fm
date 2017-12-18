@@ -15,7 +15,7 @@
     "lint-staged"
   ],
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.{js,jsx}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "@shopify/polaris": "^1.8.3",
