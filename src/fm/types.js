@@ -18,7 +18,7 @@ export type OperatorParams = {
 export type OperatorNode = {
   dest: number,
   type: OperatorNodeType,
-  params: OperatorParams
+  params: OperatorParams,
 }
 
 export type Algorithm = Array<OperatorNode>
