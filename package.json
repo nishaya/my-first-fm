@@ -9,8 +9,11 @@
     "lint": "eslint ./src --ext .js,.jsx --cache",
     "build": "parcel build src/index.html -d docs --public-url ./",
     "start": "parcel src/index.html",
-    "precommit": "lint-staged"
+    "lint-staged": "lint-staged"
   },
+  "pre-commit": [
+    "lint-staged"
+  ],
   "lint-staged": {
     "*.js": ["prettier --write", "git add"]
   },
