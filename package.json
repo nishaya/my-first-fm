@@ -43,7 +43,7 @@
     "flow-bin": "^0.61.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
-    "parcel-bundler": "^1.2.0",
+    "parcel-bundler": "^1.10.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.9.2"
   }
